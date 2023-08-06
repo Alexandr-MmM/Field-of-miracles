@@ -1,16 +1,38 @@
-# This is a sample Python script.
+import random
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+print("Гра почалась")
 
+first_list = ["вода", "чай", "печиво", "футбол", "ультрас"]
+question = random.choice(first_list)  # метод обирає рандомне слово
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+word = question  # змінна яка зберігає слово
 
+attempt = int(input("Скільки ви хочете отримати спроб для розвязання:>"))
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+stars = []
+for i in range(len(word)):
+    stars.append("*")  # приймаж answer і робить з нього ******* в змінній stars
+print(stars)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+n = 1
+win = False
+while not win:
+    answer = str(input("Введіть букву або слово:> "))
+    if len(answer) > 0:
+        for a in answer:
+            if answer == stars:
+                win = True
+                print("Ви перемогли!")
+        else:
+            print("Ви помилились(")
+    if n == attempt:
+        print("Спроби закінчились")
+        break
+    elif n <= attempt:
+        n += 1
+        print("Спробуйте ще) ")
+
+    for i in range(len(question)):
+        if answer == question[i]:
+            stars[i] = answer
+    print(stars)
